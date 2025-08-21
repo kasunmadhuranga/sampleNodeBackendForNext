@@ -2,7 +2,6 @@ import express from "express";
 import { createHandler } from "graphql-http/lib/use/express";
 import { buildSchema } from "graphql";
 import corsMiddleware from "./middleware/cors";
-import productRoutes from "./routes/productRoutes";
 import { typeDefs } from "./graphql/typeDefs";
 import { resolvers } from "./graphql/resolvers";
 
@@ -20,9 +19,6 @@ app.use('/graphql', createHandler({
   schema,
   rootValue: resolvers,
 }));
-
-// REST API routes (keeping for backward compatibility)
-app.use("/api", productRoutes);
 
 // Health check
 app.get("/health", (req, res) => {
